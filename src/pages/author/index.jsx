@@ -5,6 +5,8 @@ export default function Author() {
   let authorList = [...authors]; // salin data array constants/authors
   const authorContainerRef = useRef(null); // membuat container author
 
+  console.log(authors)
+
   const handleClick = () => {
     const newAuthor = {
       name: "John Doe",
@@ -16,6 +18,7 @@ export default function Author() {
     
     if (authorContainerRef.current) {
       const newAuthorElement = document.createElement("div");
+      newAuthorElement.className = "p-2 lg:w-1/4 md:w-1/2 w-full";
       newAuthorElement.innerHTML = `
         <img src="${newAuthor.imageUrl}" />
         <h2>${newAuthor.name}</h2>
@@ -24,7 +27,7 @@ export default function Author() {
   
       authorContainerRef.current.appendChild(newAuthorElement);
     }
-    
+
     console.log(authorList);
     alert("Data berhasil ditambahkan")
   }
@@ -40,7 +43,7 @@ export default function Author() {
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
 
-        <div className="flex flex-wrap -m-2">
+        <div ref={authorContainerRef} className="flex flex-wrap -m-2">
           {authorList.map((author, index) => (
             <div key={index} className="p-2 lg:w-1/4 md:w-1/2 w-full">
               <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
