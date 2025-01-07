@@ -12,8 +12,8 @@ function Home() {
   return (
     <>
       <Header />
-      <Login />
-      <Register />
+      {/* <Login />
+      <Register /> */}
       <Footer />
     </>
   )
