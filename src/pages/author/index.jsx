@@ -24,10 +24,11 @@ export default function Author() {
   
       authorContainerRef.current.appendChild(newAuthorElement);
     }
+    
+    console.log(authorList);
+    alert("Data berhasil ditambahkan")
   }
 
-  console.log(authorList);
-  alert("Data berhasil ditambahkan")
   
 
 
