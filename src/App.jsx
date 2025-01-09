@@ -30,14 +30,11 @@ function App() {
             <Route path="admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
               
-              
               <Route path="books">
                 <Route index element={<AdminBooks />} />
                 <Route path="create" element={<BookCreate />} />
                 <Route path="edit" element={<BookEdit />} />
               </Route>
-
-
 
             </Route>
 

@@ -32,7 +32,7 @@ export default function Contact() {
               <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send</button>
             </div>
             <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-              <a href="" className="text-indigo-500">info@booksales.com
+              <a href="#">info@booksales.com
                 <p className="leading-normal my-5">
                   Jakarta Selatan
                   <br />
