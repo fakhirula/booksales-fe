@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 export default function AdminLayout() {
   return (
     <>
@@ -134,7 +136,7 @@ export default function AdminLayout() {
 
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-          {/* children */}
+          <Outlet />
         </div>
       </div>
 
