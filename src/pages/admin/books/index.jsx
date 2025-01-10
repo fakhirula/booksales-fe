@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom"
 import { getBooks } from "../../../services/books"
+import { useEffect, useState } from "react"
 
 export default function Books() {
-  getBooks()
+  const [books, setBooks] = useState([]);  
+  
+  useEffect(() => {  
+    const fetchBooks = async () => {  
+      const data = await getBooks();  
+      setBooks(data);  
+    };  
+  
+    fetchBooks();  
+  }, []);
 
-
+  console.log(books)
+  
   return (
     <div
       className="rounded-sm shadow-default dark:bg-boxdark sm:px-7.5 xl:pb-1"
     >
-      <div className="max-w-full overflow-x-auto">
+      {books.map((book) => (
+      <div key={book.id} className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead className="border-b bg-gray-50 text-white">
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -99,6 +111,7 @@ export default function Books() {
           </tbody>
         </table>
       </div>
+      ))}
     </div>
   )
 }
