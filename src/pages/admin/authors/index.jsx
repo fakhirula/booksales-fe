@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { getGenres } from "../../../services/genres";
+import { getAuthors } from "../../../services/authors";
 
-export default function Genres() {
-  const [genres, setGenres] = useState([]);  
+export default function Authors() {
+  const [authors, setAuthors] = useState([]);  
     
     useEffect(() => {  
-      const fetchGenres = async () => {  
-        const data = await getGenres();  
-        setGenres(data);  
+      const fetchAuthors = async () => {  
+        const data = await getAuthors();  
+        setAuthors(data);  
       };  
     
-      fetchGenres();  
+      fetchAuthors();  
     }, []);
   
   return (
@@ -29,7 +29,12 @@ export default function Genres() {
               <th
                 className="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white"
               >
-                Description
+                Photo
+              </th>
+              <th
+                className="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white"
+              >
+                Bio
               </th>
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 Actions
@@ -38,16 +43,19 @@ export default function Genres() {
           </thead>
           <tbody>
 
-            {genres.length > 0 ?
-            genres.map((genre) => (
-            <tr key={genre.id} className="hover:bg-gray-50">
+            {authors.length > 0 ?
+            authors.map((author) => (
+            <tr key={author.id} className="hover:bg-gray-50">
               <td
                 className="px-4 py-5 pl-9 xl:pl-11"
               >
-                <p className="text-black dark:text-white">{genre.name}</p>
+                <p className="text-black dark:text-white">{author.name}</p>
               </td>
               <td className="px-4 py-5">
-                <p className="text-black dark:text-white">{genre.description}</p>
+                <p className="text-black dark:text-white">{author.photo}</p>
+              </td>
+              <td className="px-4 py-5">
+                <p className="text-black dark:text-white">{author.bio}</p>
               </td>
               <td className="px-4 py-5">
                 <div className="flex items-center space-x-3.5">

@@ -9,6 +9,8 @@ import BookEdit from "./pages/admin/books/edit.jsx"
 import PublicBooks from "./pages/public/books"
 import Login from "./pages/auth/login"
 import Register from "./pages/auth/register"
+import AdminGenres from "./pages/admin/genres/index.jsx"
+import AdminAuthors from "./pages/admin/authors/index.jsx"
 
 function App() {
 
@@ -35,6 +37,15 @@ function App() {
                 <Route path="create" element={<BookCreate />} />
                 <Route path="edit" element={<BookEdit />} />
               </Route>
+
+              <Route path="genres">
+                <Route index element={<AdminGenres />} />
+              </Route>
+              
+              <Route path="authors">
+                <Route index element={<AdminAuthors />} />
+              </Route>
+              
 
             </Route>
 
