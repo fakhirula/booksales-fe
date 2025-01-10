@@ -1,4 +1,5 @@
 export default function Genres() {
+
   return (
     <div
       className="rounded-sm shadow-default dark:bg-boxdark sm:px-7.5 xl:pb-1"

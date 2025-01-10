@@ -1,4 +1,10 @@
+import { Link } from "react-router-dom"
+import { getBooks } from "../../../services/books"
+
 export default function Books() {
+  getBooks()
+
+
   return (
     <div
       className="rounded-sm shadow-default dark:bg-boxdark sm:px-7.5 xl:pb-1"
@@ -48,8 +54,8 @@ export default function Books() {
               </td>
               <td className="px-4 py-5">
                 <div className="flex items-center space-x-3.5">
-                  <a href=""><i className="fa-solid fa-plus"></i></a>
-                  <a href=""><i className="fa-solid fa-pen-to-square"></i></a>
+                  <Link to="/admin/books/create"><i className="fa-solid fa-plus"></i></Link>
+                  <Link to="/admin/books/edit"><i className="fa-solid fa-pen-to-square"></i></Link>
                   <button>
                     <i className="fa-solid fa-trash"></i>
                   </button>
@@ -81,9 +87,11 @@ export default function Books() {
               </td>
               <td className="px-4 py-5">
                 <div className="flex items-center space-x-3.5">
-                  <a href=""><i className="fa-solid fa-plus"></i></a>
-                  <a href=""><i className="fa-solid fa-pen-to-square"></i></a>
-                  <a href=""><i className="fa-solid fa-trash"></i></a>
+                  <Link to="/admin/books/create"><i className="fa-solid fa-plus"></i></Link>
+                  <Link to="/admin/books/edit"><i className="fa-solid fa-pen-to-square"></i></Link>
+                  <button>
+                    <i className="fa-solid fa-trash"></i>
+                  </button>
                 </div>
               </td>
             </tr>
