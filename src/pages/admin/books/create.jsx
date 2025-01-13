@@ -1,3 +1,5 @@
+// title, description, price, stock, cover_photo, genre_id, author_id
+
 
 export default function BookCreate() {
   return (

@@ -1,25 +1,56 @@
 import { Link } from "react-router-dom"
 import { getBooks } from "../../../services/books"
+import { getGenres } from "../../../services/genres"
+import { getAuthors } from "../../../services/authors"
 import { useEffect, useState } from "react"
 
 export default function Books() {
-  const [books, setBooks] = useState([]);  
+  const [books, setBooks] = useState([])
+  const [genres, setGenres] = useState([])  
+  const [authors, setAuthors] = useState([])  
   
   useEffect(() => {  
     const fetchBooks = async () => {  
-      const data = await getBooks();  
-      setBooks(data);  
-    };  
+      const data = await getBooks()  
+      setBooks(data)  
+    }  
   
-    fetchBooks();  
-  }, []);
+    const fetchGenres = async () => {  
+      const data = await getGenres()  
+      setGenres(data)  
+    }  
+  
+    const fetchAuthors = async () => {  
+      const data = await getAuthors()  
+      setAuthors(data)  
+    }  
+  
+    fetchBooks()  
+    fetchGenres()  
+    fetchAuthors()  
+  }, [])
+
+  // Fungsi untuk mendapatkan nama genre berdasarkan genre_id  
+  const getGenreName = (id) => {  
+    const genre = genres.find((g) => g.id === id);  
+    return genre ? genre.name : "Unknown Genre";  
+  }
+  
+  // Fungsi untuk mendapatkan nama penulis berdasarkan author_id  
+  const getAuthorName = (id) => {  
+    const author = authors.find((a) => a.id === id);  
+    return author ? author.name : "Unknown Author";  
+    // if (author) {  
+    //   return author.name;  
+    // } else {  
+    //   return "Unknown Author";  
+    // }
+  }
   
   return (
     <div
       className="rounded-sm shadow-default dark:bg-boxdark sm:px-7.5 xl:pb-1"
     >
-
-      
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead className="border-b bg-gray-50 text-white">
@@ -77,13 +108,13 @@ export default function Books() {
                 <p className="text-black dark:text-white">{book.stock}</p>
               </td>
               <td className="px-4 py-5">
-                <p className="text-black dark:text-white">{book.cover_photo}</p>
+                <img src={"http://127.0.0.1:8000/storage/books/" + book.cover_photo} alt="" />
               </td>
               <td className="px-4 py-5">
-                <p className="text-black dark:text-white">{book.genre_id}</p>
+                <p className="text-black dark:text-white">{getGenreName(book.genre_id)}</p>
               </td>
               <td className="px-4 py-5">
-                <p className="text-black dark:text-white">{book.author_id}</p>
+                <p className="text-black dark:text-white">{getAuthorName(book.author_id)}</p>
               </td>
               <td className="px-4 py-5">
                 <div className="flex items-center space-x-3.5">
