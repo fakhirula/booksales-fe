@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { getBooks } from "../../../services/books"
+import { deleteBook, getBooks } from "../../../services/books"
 import { getGenres } from "../../../services/genres"
 import { getAuthors } from "../../../services/authors"
 import { useEffect, useState } from "react"
@@ -39,12 +39,16 @@ export default function Books() {
   // Fungsi untuk mendapatkan nama penulis berdasarkan author_id  
   const getAuthorName = (id) => {  
     const author = authors.find((a) => a.id === id);  
-    return author ? author.name : "Unknown Author";  
-    // if (author) {  
-    //   return author.name;  
-    // } else {  
-    //   return "Unknown Author";  
-    // }
+    return author ? author.name : "Unknown Author";
+  }
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus data ini?")
+
+    if (confirmDelete) {
+      await deleteBook(id)
+      setBooks(books.filter(book => book.id !== id))
+    }
   }
   
   return (
@@ -109,7 +113,7 @@ export default function Books() {
                 <p className="text-black dark:text-white">{book.stock}</p>
               </td>
               <td className="px-4 py-5">
-                <img src={"http://127.0.0.1:8000/storage/books/" + book.cover_photo} alt="" />
+                <img src={`http://127.0.0.1:8000/storage/books/${book.cover_photo}`} alt="" />
               </td>
               <td className="px-4 py-5">
                 <p className="text-black dark:text-white">{getGenreName(book.genre_id)}</p>
@@ -120,8 +124,8 @@ export default function Books() {
               <td className="px-4 py-5">
                 <div className="flex items-center space-x-3.5">
                   
-                  <Link to="/admin/books/edit"><i className="fa-solid fa-pen-to-square"></i></Link>
-                  <button>
+                  <Link to={`/admin/books/edit/${book.id}`}><i className="fa-solid fa-pen-to-square"></i></Link>
+                  <button onClick={() => handleDelete(book.id)}>
                     <i className="fa-solid fa-trash"></i>
                   </button>
                 </div>
