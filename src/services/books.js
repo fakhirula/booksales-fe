@@ -15,7 +15,7 @@ export const createBook = async (data) => {
   }
 }
 
-export const update = async (id, data) => {
+export const updateBook = async (id, data) => {
   try {
     const response = await API.post(`/books/${id}`, data) // endpoint
     return response.data
