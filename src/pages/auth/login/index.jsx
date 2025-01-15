@@ -1,11 +1,13 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../../services/auth"
 
 export default function Login() {
   // state (email, password)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const navigate = useNavigate()
 
   // handle (email, password), submit
   const handleEmail = (e) => {
@@ -19,10 +21,33 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // koneksi ke service auth
     const res = await login({email, password})
+
+    // cek role & redirect
+    if (res.user.role === "admin" || res.user.role === "staff") {
+      localStorage.setItem('accessToken', res.token)
+      localStorage.setItem('userInfo', JSON.stringify(res.user))
+
+      return navigate('/admin')
+
+    } else {
+      localStorage.setItem('accessToken', res.token)
+      localStorage.setItem('userInfo', JSON.stringify(res.user))
+
+      return navigate('/')
+    }
   }
 
+  const accessToken = localStorage.getItem('accessToken')
+
   // useEffect
+
+  useEffect(() => {
+    if (accessToken) {
+      return navigate('/')
+    }
+  }, [accessToken])
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
