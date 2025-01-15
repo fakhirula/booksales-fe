@@ -6,8 +6,8 @@ import { useEffect, useState } from "react"
 
 export default function Books() {
   const [books, setBooks] = useState([])
-  const [genres, setGenres] = useState([])  
-  const [authors, setAuthors] = useState([])  
+  const [genres, setGenres] = useState([])
+  const [authors, setAuthors] = useState([])
   
   useEffect(() => {  
     const fetchBooks = async () => {  

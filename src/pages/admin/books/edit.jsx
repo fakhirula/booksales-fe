@@ -13,7 +13,7 @@ export default function BookEdit() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [stock, setStock] = useState("");
+  const [stock, setStock] = useState("");``
   const [genreId, setGenreId] = useState("");
   const [authorId, setAuthorId] = useState("");
 
