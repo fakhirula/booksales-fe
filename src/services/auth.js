@@ -10,6 +10,10 @@ export const login = async ({ email, password }) => {
   }
 }
 
+export const register = async ({name, email, password}) => {
+  await API.post('/register')
+}
+
 export const logout = () => {
   try {
     localStorage.removeItem('accessToken')
