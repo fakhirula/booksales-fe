@@ -15,6 +15,17 @@ export const createBook = async (data) => {
   }
 }
 
+export const showBook = async (id) => {
+  try {
+    const { data } = await API.get(`/books/${id}`) // endpoint
+    return data.data
+  } catch (err) {
+    console.log(err)
+    throw err
+  }
+}
+
+
 export const updateBook = async (id, data) => {
   try {
     const response = await API.post(`/books/${id}`, data) // endpoint

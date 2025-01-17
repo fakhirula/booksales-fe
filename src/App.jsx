@@ -11,6 +11,7 @@ import Login from "./pages/auth/login"
 import Register from "./pages/auth/register"
 import AdminGenres from "./pages/admin/genres/index.jsx"
 import AdminAuthors from "./pages/admin/authors/index.jsx"
+import BookDetail from "./pages/public/books/detail.jsx"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route element={<PublicLayout />}>
               <Route index element={<Home />} />
               <Route path="books" element={<PublicBooks />} />
+              <Route path="books/:id" element={<BookDetail />} />
             </Route>
 
             {/* Auth Routes */}
